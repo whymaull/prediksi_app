@@ -16,6 +16,11 @@ class RegisterView extends GetView<RegisterController> {
         child: Column(
           children: [
             TextField(
+              onChanged: (val) => controller.username.value = val,
+              decoration: const InputDecoration(labelText: "Username"),
+            ),
+            const SizedBox(height: 16),
+            TextField(
               onChanged: (val) => controller.email.value = val,
               decoration: const InputDecoration(labelText: "Email"),
             ),

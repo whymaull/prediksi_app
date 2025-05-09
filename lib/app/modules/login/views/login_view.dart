@@ -15,25 +15,44 @@ class LoginView extends GetView<LoginController> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              "Selamat datang kembali!",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
             TextField(
               onChanged: (val) => controller.email.value = val,
-              decoration: const InputDecoration(labelText: "Email"),
+              decoration: const InputDecoration(
+                labelText: "Email",
+                border: OutlineInputBorder(),
+              ),
             ),
+            const SizedBox(height: 16),
             TextField(
               obscureText: true,
               onChanged: (val) => controller.password.value = val,
-              decoration: const InputDecoration(labelText: "Password"),
+              decoration: const InputDecoration(
+                labelText: "Password",
+                border: OutlineInputBorder(),
+              ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: controller.login,
-              child: const Text("Login"),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: controller.login,
+                child: const Text("Login"),
+              ),
             ),
-            TextButton(
-              onPressed: () => Get.toNamed(Routes.REGISTER),
-              child: const Text("Belum punya akun? Daftar"),
-            )
+            const SizedBox(height: 8),
+            Center(
+              child: TextButton(
+                onPressed: () => Get.toNamed(Routes.REGISTER),
+                child: const Text("Belum punya akun? Daftar di sini"),
+              ),
+            ),
           ],
         ),
       ),
