@@ -9,7 +9,7 @@ class HomeController extends GetxController {
   var filteredSaham = <Map<String, dynamic>>[].obs;
   final search = ''.obs;
 
-  final String baseUrl = 'http://192.168.0.118:5000';
+  final String baseUrl = 'https://deploy-production-4140.up.railway.app/';
 
   @override
   void onInit() {

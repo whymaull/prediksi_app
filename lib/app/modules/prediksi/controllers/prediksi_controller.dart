@@ -10,7 +10,7 @@ class PrediksiController extends GetxController {
   final isLoading = true.obs;
   late String symbol;
 
-  final baseUrl = 'http://192.168.0.118:5000';
+  final baseUrl = 'https://deploy-production-4140.up.railway.app/';
 
   @override
   void onInit() {
