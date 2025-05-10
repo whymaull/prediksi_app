@@ -7,6 +7,11 @@ class RegisterController extends GetxController {
   final username = ''.obs;
   final email = ''.obs;
   final password = ''.obs;
+  var showPassword = false.obs;
+
+  void togglePassword() {
+    showPassword.value = !showPassword.value;
+  }
 
   Future<void> register() async {
     if (username.isEmpty || email.isEmpty || password.isEmpty) {

@@ -1,7 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
+import 'package:prediksi_app/app/helper/date_utils.dart';
 import '../controllers/riwayat_controller.dart';
 
 class RiwayatView extends StatelessWidget {
@@ -11,36 +12,81 @@ class RiwayatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Riwayat Prediksi")),
+      backgroundColor: const Color(0xFFF7F9FB),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const Text(
+          "Riwayat Prediksi",
+          style: TextStyle(color: Colors.black),
+        ),
+        centerTitle: false,
+      ),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        if (controller.riwayatList.isEmpty) {
-          return const Center(child: Text("Belum ada riwayat"));
+        final data = controller.riwayatList;
+
+        if (data.isEmpty) {
+          return const Center(child: Text("Belum ada riwayat prediksi."));
         }
 
         return ListView.builder(
-          itemCount: controller.riwayatList.length,
+          padding: const EdgeInsets.all(16),
+          itemCount: data.length,
           itemBuilder: (context, index) {
-            final item = controller.riwayatList[index];
-            return Card(
-              margin: const EdgeInsets.all(8),
-              child: ListTile(
-                title: Text("Kode Saham: ${item['symbol']}"),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Periode: ${item['periods']} hari"),
-                    Text("Hasil: ${item['forecast']}"),
-                    Text("Tanggal: ${item['created_at']}"),
-                  ],
-                ),
-                trailing: IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.red),
-                  onPressed: () => controller.deleteRiwayat(item['id']),
-                ),
+            final item = data[index];
+            final List forecast = jsonDecode(item['forecast']);
+            final tanggal = formatTanggal(item['created_at']);
+
+            return Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.08),
+                    blurRadius: 5,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Kode Saham: ${item['symbol']}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        onPressed: () => controller.deleteRiwayat(item['id']),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  Text("Periode: ${item['periods']} hari"),
+                  const SizedBox(height: 4),
+                  Text(
+                    "Hasil: ${forecast.map((v) => double.parse(v.toString()).toStringAsFixed(2)).join(', ')}",
+                    style: const TextStyle(fontSize: 13, color: Colors.black87),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    "Tanggal: $tanggal",
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                ],
               ),
             );
           },

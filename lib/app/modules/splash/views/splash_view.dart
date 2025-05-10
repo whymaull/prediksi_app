@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../controllers/splash_controller.dart';
 
+// ignore: must_be_immutable
 class SplashView extends StatelessWidget {
   SplashController controller = Get.put(SplashController());
   SplashView({Key? key}) : super(key: key);

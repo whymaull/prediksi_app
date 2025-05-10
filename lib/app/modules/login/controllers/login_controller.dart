@@ -8,6 +8,11 @@ import 'package:http/http.dart' as http;
 class LoginController extends GetxController {
   final email = ''.obs;
   final password = ''.obs;
+  var showPassword = false.obs;
+
+  void togglePassword() {
+    showPassword.value = !showPassword.value;
+  }
 
   Future<void> login() async {
     if (email.isEmpty || password.isEmpty) {

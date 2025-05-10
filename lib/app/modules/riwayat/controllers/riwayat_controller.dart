@@ -18,6 +18,8 @@ class RiwayatController extends GetxController {
     final response = await http.get(
       Uri.parse('http://192.168.0.118:5000/riwayat/$userId'),
     );
+    print("Status code: ${response.statusCode}");
+    print("Body: ${response.body}");
 
     if (response.statusCode == 200) {
       riwayatList.value = jsonDecode(response.body);
@@ -46,4 +48,13 @@ class RiwayatController extends GetxController {
     super.onInit();
     fetchRiwayat();
   }
+
+  @override
+  void onReady() {
+    super.onReady();
+    if (!isLoading.value) {
+      fetchRiwayat();
+    }
+  }
+
 }
