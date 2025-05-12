@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:prediksi_app/app/routes/app_pages.dart';
+import 'package:prediksi_app/app/services/auth_services.dart';
 
 class RegisterController extends GetxController {
   final username = ''.obs;
@@ -21,8 +22,7 @@ class RegisterController extends GetxController {
 
     try {
       final response = await http.post(
-        Uri.parse(
-            'http://192.168.0.118:5000/register'), // ganti sesuai backend kamu
+        Uri.parse('$baseUrl/register'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'username': username.value,

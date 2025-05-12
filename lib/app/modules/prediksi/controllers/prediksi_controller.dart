@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:prediksi_app/app/modules/riwayat/controllers/riwayat_controller.dart';
+import 'package:prediksi_app/app/services/auth_services.dart';
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,14 +39,14 @@ class PrediksiController extends GetxController {
       final userId = prefs.getString("user_id") ?? "guest";
 
       final response = await http.post(
-        Uri.parse('http://192.168.0.118:5000/predict'),
+        Uri.parse('$baseUrl/predict'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'symbol': symbol,
           'start_date': selectedDate.value!.toIso8601String().split('T')[0],
           'period': period.value,
           'periods': 7,
-          'user_id': userId
+          'user_id': userId,
         }),
       );
 
@@ -56,8 +57,7 @@ class PrediksiController extends GetxController {
           ? Get.find<RiwayatController>()
           : null;
 
-      riwayatC
-          ?.fetchRiwayat(); // refresh riwayat prediksi setelah prediksi berhasil
+      riwayatC?.fetchRiwayat(); // refresh riwayat prediksi
     } catch (e) {
       Get.snackbar("Error", "Gagal mengambil hasil prediksi");
     }

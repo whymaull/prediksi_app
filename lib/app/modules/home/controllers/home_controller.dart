@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:prediksi_app/app/routes/app_pages.dart';
+
+import 'package:prediksi_app/app/services/auth_services.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
@@ -9,8 +10,6 @@ class HomeController extends GetxController {
   var allSaham = <Map<String, dynamic>>[].obs;
   var filteredSaham = <Map<String, dynamic>>[].obs;
   final search = ''.obs;
-
-  final String baseUrl = 'http://192.168.0.118:5000';
 
   @override
   void onInit() {

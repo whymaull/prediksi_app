@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prediksi_app/app/controllers/bottom_navbar.dart';
 import 'package:prediksi_app/app/modules/home/views/home_view.dart';
+import 'package:prediksi_app/app/modules/profile/views/profile_view.dart';
 import 'package:prediksi_app/app/modules/riwayat/views/riwayat_view.dart';
 
 class MainView extends StatelessWidget {
@@ -11,7 +12,7 @@ class MainView extends StatelessWidget {
   final List<Widget> pages = [
     HomeView(),
     RiwayatView(),
-    // ProfilePage(),
+    ProfileView(),
   ];
 
   @override
@@ -38,10 +39,10 @@ class MainView extends StatelessWidget {
                   icon: Icon(Icons.history),
                   label: 'Riwayat',
                 ),
-                // BottomNavigationBarItem(
-                //   icon: Icon(Icons.person),
-                //   label: 'Profil',
-                // ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  label: 'Profil',
+                ),
               ],
             ),
           )),

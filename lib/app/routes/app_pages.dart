@@ -8,6 +8,8 @@ import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
 import '../modules/prediksi/bindings/prediksi_binding.dart';
 import '../modules/prediksi/views/prediksi_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/riwayat/bindings/riwayat_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.RIWAYAT,
       page: () => RiwayatView(),
       binding: RiwayatBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

@@ -11,7 +11,7 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF7F7FD5),
+      backgroundColor: const Color(0xFFB2C6D5),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -32,7 +32,7 @@ class LoginView extends GetView<LoginController> {
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   decoration: const BoxDecoration(
-                    color: Color(0xFF5F52EE),
+                    color: Color(0xFF94B4C1),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(12),
                         topRight: Radius.circular(12)),
@@ -78,7 +78,7 @@ class LoginView extends GetView<LoginController> {
                       children: [
                         TextSpan(
                             text: "Daftar disini",
-                            style: TextStyle(color: Color(0xFF5F52EE)))
+                            style: TextStyle(color: Color(0xFF547792)))
                       ],
                     )),
                   ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:prediksi_app/app/routes/app_pages.dart';
+import 'package:prediksi_app/app/services/auth_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,8 +23,7 @@ class LoginController extends GetxController {
 
     try {
       final response = await http.post(
-        Uri.parse(
-            'http://192.168.0.118:5000/login'), // Ganti IP sesuai backend kamu
+        Uri.parse('$baseUrl/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': email.value,

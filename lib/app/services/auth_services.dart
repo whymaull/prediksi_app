@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class AuthService {
-  static const String baseUrl =
-      'http://192.168.0.118:5000'; // ganti sesuai IP backend kamu
+const String baseUrl = 'http://192.168.0.126:5000';
 
+class AuthService {
   static Future<Map<String, dynamic>> login(
       String email, String password) async {
     final response = await http.post(

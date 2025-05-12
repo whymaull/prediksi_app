@@ -10,7 +10,7 @@ class RegisterView extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF7F7FD5),
+      backgroundColor: const Color(0xFFB2C6D5),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -31,7 +31,7 @@ class RegisterView extends GetView<RegisterController> {
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   decoration: const BoxDecoration(
-                    color: Color(0xFF5F52EE),
+                    color: Color(0xFF94B4C1),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(12),
                         topRight: Radius.circular(12)),
@@ -53,7 +53,7 @@ class RegisterView extends GetView<RegisterController> {
                 CustomTextField(
                   label: "USERNAME",
                   icon: Icons.person,
-                  hintText: "nama pengguna",
+                  hintText: "Nama Pengguna",
                   onChanged: (val) => controller.username.value = val,
                 ),
                 const SizedBox(height: 16),
@@ -84,7 +84,7 @@ class RegisterView extends GetView<RegisterController> {
                       children: [
                         TextSpan(
                             text: "Masuk disini",
-                            style: TextStyle(color: Color(0xFF5F52EE)))
+                            style: TextStyle(color: Color(0xFF547792)))
                       ],
                     )),
                   ),
