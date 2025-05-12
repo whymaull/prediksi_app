@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-const String baseUrl = 'deploy-production-005c.up.railway.app';
+const String baseUrl = 'https://deploy-production-005c.up.railway.app';
 
 class AuthService {
   static Future<Map<String, dynamic>> login(
