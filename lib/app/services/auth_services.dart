@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 // const String baseUrl = 'https://deploy-production-005c.up.railway.app';
-// const String baseUrl = 'https://gg0l3mpr-3000.asse.devtunnels.ms';
+// const String baseUrl = 'https://gg0l3mpr-5002.asse.devtunnels.ms';
 const String baseUrl = 'http://192.168.0.106:5000';
 
 class AuthService {
