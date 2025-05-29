@@ -16,10 +16,9 @@ class PrediksiView extends GetView<PrediksiController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Pilih Tanggal Prediksi",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
+                const Text("Pilih Tanggal Prediksi",
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
                 const SizedBox(height: 10),
                 GestureDetector(
                   onTap: controller.pickDate,
@@ -52,22 +51,26 @@ class PrediksiView extends GetView<PrediksiController> {
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
                 const SizedBox(height: 10),
-                DropdownButtonFormField<String>(
-                  value: controller.period.value,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 14),
-                  ),
-                  items: const [
-                    DropdownMenuItem(value: 'daily', child: Text("Harian")),
-                    DropdownMenuItem(value: 'weekly', child: Text("Mingguan")),
-                    DropdownMenuItem(value: 'monthly', child: Text("Bulanan")),
-                  ],
-                  onChanged: (val) => controller.period.value = val!,
-                ),
+                Obx(() => DropdownButtonFormField<String>(
+                      value: controller.period.value,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 14),
+                      ),
+                      items: const [
+                        DropdownMenuItem(value: 'daily', child: Text("Harian")),
+                        DropdownMenuItem(
+                            value: 'weekly', child: Text("Mingguan")),
+                        DropdownMenuItem(
+                            value: 'monthly', child: Text("Bulanan")),
+                      ],
+                      onChanged: (val) {
+                        controller.period.value = val!;
+                      },
+                    )),
                 const SizedBox(height: 25),
                 SizedBox(
                   width: double.infinity,
@@ -81,13 +84,9 @@ class PrediksiView extends GetView<PrediksiController> {
                     ),
                     onPressed: controller.predict,
                     child: controller.isLoading.value
-                        ? const CircularProgressIndicator(
-                            color: Colors.white,
-                          )
-                        : const Text(
-                            "Mulai Prediksi",
-                            style: TextStyle(fontSize: 16),
-                          ),
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text("Mulai Prediksi",
+                            style: TextStyle(fontSize: 16)),
                   ),
                 ),
                 const SizedBox(height: 30),

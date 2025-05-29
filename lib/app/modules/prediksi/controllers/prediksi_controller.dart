@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:prediksi_app/app/modules/riwayat/controllers/riwayat_controller.dart';
-import 'package:prediksi_app/app/services/auth_services.dart';
-import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import '../../../services/auth_services.dart';
+import '../../riwayat/controllers/riwayat_controller.dart';
 
 class PrediksiController extends GetxController {
-  //TODO: Implement PrediksiController
-
   var symbol = '';
   var selectedDate = Rxn<DateTime>();
   var period = 'daily'.obs;
@@ -57,7 +54,7 @@ class PrediksiController extends GetxController {
           ? Get.find<RiwayatController>()
           : null;
 
-      riwayatC?.fetchRiwayat(); // refresh riwayat prediksi
+      riwayatC?.fetchRiwayat();
     } catch (e) {
       Get.snackbar("Error", "Gagal mengambil hasil prediksi");
     }
@@ -70,5 +67,11 @@ class PrediksiController extends GetxController {
     super.onInit();
     final args = Get.arguments;
     symbol = args['symbol'];
+
+    // Hapus hasil prediksi jika periode diubah
+    ever(period, (_) {
+      forecast.clear();
+      Get.snackbar("Info", "Periode diubah, silakan klik prediksi ulang");
+    });
   }
 }
