@@ -10,6 +10,7 @@ class HomeController extends GetxController {
   var allSaham = <Map<String, dynamic>>[].obs;
   var filteredSaham = <Map<String, dynamic>>[].obs;
   final search = ''.obs;
+  var isLoading = false.obs;
 
   @override
   void onInit() {

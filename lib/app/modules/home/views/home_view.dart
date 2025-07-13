@@ -60,6 +60,9 @@ class HomeView extends StatelessWidget {
           ),
           Expanded(
             child: Obx(() {
+              if (controller.isLoading.value) {
+                return const Center(child: CircularProgressIndicator());
+              }
               final filtered = controller.filteredSaham;
               if (filtered.isEmpty) {
                 return const Center(child: Text("Tidak ada saham ditemukan."));
